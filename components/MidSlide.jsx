@@ -5,23 +5,15 @@ import PropTypes from 'prop-types';
 
 
 const MidSlide = ({ products, title }) => {
-    const addUrl = 'https://res.cloudinary.com/dx0dgujbj/image/upload/v1690316219/MilkHouse/BannerData/Banners-05_tou5hj.jpg'
     
     return (
         <View style={styles.container}>
-            <View style={styles.leftComponent}>
+            {/* <View style={styles.leftComponent}> */}
                 <Slide 
                     products={products}
                     title={title}
                 />
-            </View>
-            <View style={styles.rightComponent}>
-                <Image 
-                    source={{uri: addUrl}}
-                    style={styles.image}
-                    resizeMode="contain"
-                />
-            </View>
+            {/* </View> */}
         </View>
     )
 }

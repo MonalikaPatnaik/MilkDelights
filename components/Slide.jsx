@@ -5,20 +5,6 @@ import PropTypes from 'prop-types';
 
 const { width: screenWidth } = Dimensions.get('window');
 
-const responsive = {
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 5,
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2,
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1,
-  },
-};
 
 const Slide = ({ products, timer, title }) => {
   const timerURL = "https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/timer_a73398.svg";
@@ -76,15 +62,20 @@ const Slide = ({ products, timer, title }) => {
         data={products}
         renderItem={renderItem}
         sliderWidth={screenWidth}
-        itemWidth={screenWidth / 2.5}
-        inactiveSlideScale={0.95}
+        itemWidth={screenWidth / 2.2} // Slightly larger items like Flipkart
+        inactiveSlideScale={1} // No scaling effect like Flipkart
         inactiveSlideOpacity={1}
         enableMomentum={true}
         activeSlideAlignment={'start'}
         containerCustomStyle={styles.carousel}
-        loop={true}
-        autoplay={true}
-        autoplayInterval={10000}
+        loop={false} // Flipkart doesn't loop their carousels
+        autoplay={false} // Manual scrolling like Flipkart
+        decelerationRate={0.9} // Smooth deceleration
+        snapToInterval={screenWidth / 2.2} // Snap to item width
+        snapToAlignment={'start'}
+        showsHorizontalScrollIndicator={false}
+        horizontal={true}
+        bounces={false} // Prevents overscrolling like Flipkart
       />
     </View>
   );

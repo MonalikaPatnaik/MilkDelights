@@ -1,34 +1,3 @@
-export const navData = [
-  {
-    url: "https://res.cloudinary.com/dx0dgujbj/image/upload/v1688703545/MilkHouse/Navbar_data/Milk_dra20z.png",
-    text: "Quality Milk",
-  },
-  {
-    url: "https://res.cloudinary.com/dx0dgujbj/image/upload/v1688704437/MilkHouse/Navbar_data/cheese-clipart-design-illustration-free-png_f0639g.webp",
-    text: "Cheese",
-    link: "product/product4",
-  },
-  {
-    url: "https://res.cloudinary.com/dx0dgujbj/image/upload/v1688703537/MilkHouse/Navbar_data/Butter_xpdn8n.png",
-    text: "Butter",
-    link: "product/product6",
-  },
-  {
-    url: "https://res.cloudinary.com/dx0dgujbj/image/upload/v1688704651/MilkHouse/Navbar_data/ice-cream-ice-cream-scoops-on-bowl-removebg-preview_n4t7yn.png",
-    text: "Ice Cream",
-    link: "product/product5",
-  },
-  {
-    url: "https://res.cloudinary.com/dx0dgujbj/image/upload/v1688705179/MilkHouse/Navbar_data/pngtree-hand-drawn-delicious-yogurt-illustration-image_2300120-removebg-preview_ieffgm.png",
-    text: "Yogurt",
-    link: "product/product2",
-  },
-  {
-    url: "https://res.cloudinary.com/dx0dgujbj/image/upload/v1688705486/MilkHouse/Navbar_data/png-transparent-milk-malai-cream-paneer-ghee-milk-food-cheese-cream-cheese-thumbnail-removebg-preview_opkamh.png",
-    text: "Paneer",
-    link: "product/product7",
-  },
-];
 
 export const bannerData = [
   {

@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { View,ScrollView, StyleSheet } from 'react-native';
-// import Navbar from '../../components/Navbar';
 import Banner from '../../components/Banner';
 import Slide from '../../components/Slide';
 import { getProducts } from '../../redux/actions/productAction'
