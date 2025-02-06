@@ -2,6 +2,7 @@ import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions } from 'rea
 import Carousel from 'react-native-snap-carousel';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'expo-router';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -18,10 +19,7 @@ const Slide = ({ products, timer, title }) => {
   };
 
   const renderItem = ({ item: temp }) => (
-    <TouchableOpacity 
-      onPress={() => {/* Navigate to product/${temp.id} */}}
-      style={styles.carouselItem}
-    >
+    <Link href={`/product/${temp.id}`} style={styles.carouselItem}>
       <View style={styles.itemContainer}>
         <Image 
           source={{ uri: temp.url }}
@@ -32,7 +30,7 @@ const Slide = ({ products, timer, title }) => {
         <Text style={styles.discountText}>{temp.discount}</Text>
         <Text style={styles.taglineText}>{temp.tagline}</Text>
       </View>
-    </TouchableOpacity>
+    </Link>
   );
 
   return (
@@ -52,7 +50,7 @@ const Slide = ({ products, timer, title }) => {
         )}
         <TouchableOpacity 
           style={styles.viewAllButton}
-          onPress={() => {/* Navigate to /dairy/products */}}
+          onPress={() => router.push('/productView')}
         >
           <Text style={styles.buttonText}>View All</Text>
         </TouchableOpacity>
