@@ -44,36 +44,32 @@ const Slide = ({ products, timer, title }) => {
               style={styles.timerIcon}
               resizeMode="contain"
             />
-            {/* Replace Countdown with custom timer implementation */}
             <Text style={styles.timerText}>Time Left</Text>
           </View>
         )}
-        <TouchableOpacity 
-          style={styles.viewAllButton}
-          onPress={() => router.push('/productView')}
-        >
+        <Link href={'/productView'} style={styles.viewAllButton}>
           <Text style={styles.buttonText}>View All</Text>
-        </TouchableOpacity>
+        </Link>
       </View>
       <View style={styles.divider} />
       <Carousel
         data={products}
         renderItem={renderItem}
         sliderWidth={screenWidth}
-        itemWidth={screenWidth / 2.2} // Slightly larger items like Flipkart
-        inactiveSlideScale={1} // No scaling effect like Flipkart
+        itemWidth={screenWidth / 2.2}
+        inactiveSlideScale={1}
         inactiveSlideOpacity={1}
         enableMomentum={true}
         activeSlideAlignment={'start'}
         containerCustomStyle={styles.carousel}
-        loop={false} // Flipkart doesn't loop their carousels
-        autoplay={false} // Manual scrolling like Flipkart
-        decelerationRate={0.9} // Smooth deceleration
-        snapToInterval={screenWidth / 2.2} // Snap to item width
+        loop={false}
+        autoplay={false}
+        decelerationRate={0.9}
+        snapToInterval={screenWidth / 2.2}
         snapToAlignment={'start'}
         showsHorizontalScrollIndicator={false}
         horizontal={true}
-        bounces={false} // Prevents overscrolling like Flipkart
+        bounces={false}
       />
     </View>
   );
