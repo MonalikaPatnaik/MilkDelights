@@ -1,7 +1,9 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { useRouter } from 'expo-router';
 
 export default function Welcome({ navigation }: { navigation: any }) {
+  const router = useRouter();
   return (
     <View style={styles.container}>
       <Text style={styles.logo}>MD</Text>
@@ -9,10 +11,10 @@ export default function Welcome({ navigation }: { navigation: any }) {
       <Text style={styles.subtitle}>
         Shop & get updates on new products, promotions, and sales with our mobile app.
       </Text>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('login')}>
+      <TouchableOpacity style={styles.button} onPress={() => router.push('/login')}>
         <Text style={styles.buttonText}>Log In</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={[styles.button, styles.signupButton]} onPress={() => navigation.navigate('signup')}>
+      <TouchableOpacity style={[styles.button, styles.signupButton]} onPress={() => router.push('/signup')}>
         <Text style={[styles.buttonText, styles.signupButtonText]}>Sign Up</Text>
       </TouchableOpacity>
     </View>
