@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
 
-export default function SignInScreen() {
+export default function Login() {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -23,7 +23,7 @@ export default function SignInScreen() {
         value={password}
         onChangeText={setPassword}
       />
-      <Button title="Sign In" onPress={() => router.push('/tabs')} />
+      <Button title="Sign In" onPress={() => router.push('/(tabs)')} />
       <Text style={styles.link} onPress={() => router.push('/signup')}>
         Don't have an account? Sign up
       </Text>

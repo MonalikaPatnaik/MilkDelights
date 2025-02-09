@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
-export default function WelcomeScreen({ navigation }: { navigation: any }) {
+export default function Welcome({ navigation }: { navigation: any }) {
   return (
     <View style={styles.container}>
       <Text style={styles.logo}>MD</Text>
@@ -9,10 +9,10 @@ export default function WelcomeScreen({ navigation }: { navigation: any }) {
       <Text style={styles.subtitle}>
         Shop & get updates on new products, promotions, and sales with our mobile app.
       </Text>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SignIn')}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('login')}>
         <Text style={styles.buttonText}>Log In</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={[styles.button, styles.signupButton]} onPress={() => navigation.navigate('SignUp')}>
+      <TouchableOpacity style={[styles.button, styles.signupButton]} onPress={() => navigation.navigate('signup')}>
         <Text style={[styles.buttonText, styles.signupButtonText]}>Sign Up</Text>
       </TouchableOpacity>
     </View>
