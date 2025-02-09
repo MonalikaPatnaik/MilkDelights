@@ -1,7 +1,7 @@
 import * as actionTypes from "../constants/productsConstant";
 const initialState = {
-    products: [],
     loading: false,
+    products: [],
     error: null,
   };
 export const getProductsReducer = (state = initialState,action) => {

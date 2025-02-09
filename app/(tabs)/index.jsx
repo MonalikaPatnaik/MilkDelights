@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 });
 
 const Home = () => {
-  const { loading, products } = useSelector((state) => state.getProducts);
+  const { loading, products } = useSelector((state: RootState) => state.getProducts || {});
 
   const dispatch = useDispatch();
   useEffect(() => {

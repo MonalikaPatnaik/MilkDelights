@@ -3,6 +3,7 @@ import { combineReducers} from 'redux';
 import thunk from 'redux-thunk';
 import {getProductsReducer, getProductDetailsReducer} from './reducers/productReducer';
 import {cartReducer} from './reducers/cartReducer';// You'll need to create this
+import userReducer from './userSlice';
 
 const reducer = combineReducers({
   getProducts: getProductsReducer,
@@ -12,5 +13,4 @@ const reducer = combineReducers({
 const middleware = [thunk];
 export const store = configureStore({
   reducer: reducer
-
 });
