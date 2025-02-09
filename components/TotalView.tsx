@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { Product } from "../redux/actions/cartActions";
 
 interface Props {
-  items: Product[];
+  items: Product[];  // ✅ Define `items` as an array of `Product`
 }
 
 const TotalView: React.FC<Props> = ({ items }) => {
@@ -11,10 +11,12 @@ const TotalView: React.FC<Props> = ({ items }) => {
   const [discount, setDiscount] = useState(0);
 
   useEffect(() => {
-    let totalPrice = 0, totalDiscount = 0;
-    items.forEach(item => {
-      totalPrice += item.price.mrp;
-      totalDiscount += item.price.mrp - item.price.cost;
+    let totalPrice = 0;
+    let totalDiscount = 0;
+    items.forEach((item) => {
+      const quantity = item.quantity ?? 1;  // ✅ Ensure quantity is never undefined
+      totalPrice += item.price.mrp * quantity;
+      totalDiscount += (item.price.mrp - item.price.cost) * quantity;
     });
     setPrice(totalPrice);
     setDiscount(totalDiscount);

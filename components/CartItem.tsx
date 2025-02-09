@@ -7,12 +7,13 @@ import GroupButton from "./GroupButton";
 
 interface Props {
   item: Product;
+  onRemove: () => void; 
 }
 
-const CartItem: React.FC<Props> = ({ item }) => {
+const CartItem: React.FC<Props> = ({ item, onRemove }) => {
   const dispatch: AppDispatch = useDispatch();
 
-  // console.log("Cart Item Data:", item);
+  const quantity = item.quantity ?? 1;  
 
   return (
     <View style={styles.container}>
@@ -21,9 +22,12 @@ const CartItem: React.FC<Props> = ({ item }) => {
         <Text style={styles.title}>
           {typeof item.title === "string" ? item.title : item.title?.shortTitle}
         </Text>
-        <Text style={styles.price}>₹{item.price.cost} (MRP: ₹{item.price.mrp})</Text>
-        <GroupButton />
-        <TouchableOpacity onPress={() => dispatch(removeFromCart(item.id))} style={styles.removeBtn}>
+        <Text style={styles.price}>
+          ₹{item.price.cost * quantity} (MRP: ₹{item.price.mrp * quantity})
+        </Text>
+
+        <GroupButton itemId={item.id} quantity={quantity} />
+        <TouchableOpacity onPress={onRemove} style={styles.removeBtn}>
           <Text style={styles.removeText}>Remove</Text>
         </TouchableOpacity>
       </View>

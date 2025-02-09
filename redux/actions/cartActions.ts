@@ -54,3 +54,14 @@ export const removeFromCart = (id: string) => async (dispatch: AppDispatch) => {
     console.error("Error removing item from cart:", error);
   }
 };
+
+export const updateCartQuantity = (id: string, quantity: number) => async (dispatch: AppDispatch) => {
+  try {
+    dispatch({
+      type: actionTypes.UPDATE_CART_QUANTITY,
+      payload: { id, quantity },
+    });
+  } catch (error) {
+    console.error("Error updating quantity:", error);
+  }
+};

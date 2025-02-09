@@ -1,25 +1,33 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { useDispatch } from "react-redux";
+import { updateCartQuantity } from "../redux/actions/cartActions";
+import { AppDispatch } from "../redux/store";
 
-const GroupButton: React.FC = () => {
-  const [counter, setCounter] = useState<number>(1);
+interface Props {
+  itemId: string;
+  quantity: number;
+}
+
+const GroupButton: React.FC<Props> = ({ itemId, quantity }) => {
+  const dispatch: AppDispatch = useDispatch();
 
   const handleIncrement = () => {
-    setCounter((prev) => prev + 1);
+    dispatch(updateCartQuantity(itemId, quantity + 1));
   };
 
   const handleDecrement = () => {
-    if (counter > 1) {
-      setCounter((prev) => prev - 1);
+    if (quantity > 1) {
+      dispatch(updateCartQuantity(itemId, quantity - 1));
     }
   };
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={handleDecrement} style={styles.button} disabled={counter === 1}>
+      <TouchableOpacity onPress={handleDecrement} style={styles.button} disabled={quantity === 1}>
         <Text style={styles.buttonText}>-</Text>
       </TouchableOpacity>
-      <Text style={styles.counter}>{counter}</Text>
+      <Text style={styles.counter}>{quantity}</Text>
       <TouchableOpacity onPress={handleIncrement} style={styles.button}>
         <Text style={styles.buttonText}>+</Text>
       </TouchableOpacity>
