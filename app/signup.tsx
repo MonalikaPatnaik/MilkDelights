@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, StyleSheet, Pressable } from "react-native";
+import { View, Text, TextInput, StyleSheet, Pressable, Alert } from "react-native";
 import { useRouter } from "expo-router";
+import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import { auth } from "../firebase";
 
 export default function Signup() {
   const router = useRouter();
@@ -8,8 +10,23 @@ export default function Signup() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
+  
+  const handleSignup = async () => {
+    if (!email || !password) {
+      Alert.alert("Error", "Please enter email and password");
+      return;
+    }
 
-  return (
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      await sendEmailVerification(userCredential.user);
+      Alert.alert("Success", "User registered! Check your email for verification.");
+      // router.push("/login"); // Redirect to login page
+    } catch (error: any) {
+      Alert.alert("Error", error.message);
+    }
+  };
+  return ( 
     <View style={styles.container}>
       <Text style={styles.title}>Create an Account</Text>
 
@@ -51,7 +68,7 @@ export default function Signup() {
           styles.button, 
           pressed && styles.buttonPressed
         ]} 
-        onPress={() => router.push("/(tabs)")}
+        onPress={handleSignup}
       >
         <Text style={styles.buttonText}>Sign Up</Text>
       </Pressable>

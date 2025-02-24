@@ -1,12 +1,34 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, Pressable } from 'react-native';
-import { useRouter } from 'expo-router';
+import { View, Text, TextInput, StyleSheet, Pressable, Alert } from "react-native";
+import { useRouter } from "expo-router";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
 
 export default function Login() {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const handleLogin = async () => {
+    if (!email || !password) {
+      Alert.alert("Error", "Please enter email and password");
+      return;
+    }
+  
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+  
+      if (!userCredential.user.emailVerified) {
+        Alert.alert("Error", "Please verify your email before logging in.");
+        return;
+      }
+  
+      Alert.alert("Success", "Logged in successfully!");
+      router.push("/(tabs)"); 
+    } catch (error: any) {
+      Alert.alert("Error", error.message);
+    }
+  };
+  
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome Back</Text>
@@ -35,7 +57,7 @@ export default function Login() {
           styles.button, 
           pressed && styles.buttonPressed
         ]} 
-        onPress={() => router.push('/(tabs)')}
+        onPress={handleLogin}
       >
         <Text style={styles.buttonText}>Sign In</Text>
       </Pressable>

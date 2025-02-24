@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "439081332892",
+    "project_id": "milkdelights-13e70",
+    "storage_bucket": "milkdelights-13e70.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:439081332892:android:430fff536c264ce0e7fd59",
+        "android_client_info": {
+          "package_name": "com.igdtuw.milkdelights"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "439081332892-cabfu892b7ra04fcpisjo40ll4c66k80.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBc04Tmh_gJpD_IcNpORRQYJuOu1Pa1n6M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "439081332892-cabfu892b7ra04fcpisjo40ll4c66k80.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
