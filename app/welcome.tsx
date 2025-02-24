@@ -1,22 +1,42 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image , Pressable} from 'react-native';
 import { useRouter } from 'expo-router';
+import { Hidden } from '@mui/material';
 
 export default function Welcome({ navigation }: { navigation: any }) {
   const router = useRouter();
   return (
     <View style={styles.container}>
-      <Text style={styles.logo}>MD</Text>
+      <Image 
+      source={require('../assets/images/logo.png')} // Replace with your image path
+      style={styles.logo}
+      resizeMode="contain"
+    />
       <Text style={styles.title}>Welcome to MilkDelights</Text>
       <Text style={styles.subtitle}>
         Shop & get updates on new products, promotions, and sales with our mobile app.
       </Text>
-      <TouchableOpacity style={styles.button} onPress={() => router.push('/login')}>
+      <Pressable 
+        style={({ pressed }) => [
+          styles.button, 
+          pressed && styles.buttonPressed
+        ]} 
+        onPress={() => router.push('/login')}
+      >
         <Text style={styles.buttonText}>Log In</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={[styles.button, styles.signupButton]} onPress={() => router.push('/signup')}>
+      </Pressable>
+
+      {/* Sign Up Button */}
+      <Pressable 
+        style={({ pressed }) => [
+          styles.button, 
+          styles.signupButton, 
+          pressed && styles.signupButtonPressed
+        ]} 
+        onPress={() => router.push('/signup')}
+      >
         <Text style={[styles.buttonText, styles.signupButtonText]}>Sign Up</Text>
-      </TouchableOpacity>
+      </Pressable>
     </View>
   );
 }
@@ -26,28 +46,31 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: '#FFF5E1',
     padding: 20,
   },
   logo: {
-    fontSize: 60,
-    fontWeight: 'bold',
+    width: 200,  // Adjust as needed
+    height: 200, // Adjust as needed
     marginBottom: 20,
+    borderRadius: 100,
+    overflow: 'hidden',
   },
   title: {
     fontSize: 22,
     fontWeight: 'bold',
     marginBottom: 10,
+    color: '#6A3A1F'
   },
   subtitle: {
     fontSize: 16,
     textAlign: 'center',
-    color: '#666',
+    color: '#a25b36',
     marginBottom: 30,
   },
   button: {
     width: '100%',
-    backgroundColor: '#000',
+    backgroundColor: '#814828',
     padding: 15,
     borderRadius: 8,
     alignItems: 'center',
@@ -58,12 +81,18 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
+  buttonPressed: {
+    backgroundColor: '#6A3A1F', // Darker shade when pressed
+  },
   signupButton: {
-    backgroundColor: '#fff',
+    backgroundColor: '#FFF5E1',
     borderWidth: 1,
-    borderColor: '#000',
+    borderColor: '#814828',
   },
   signupButtonText: {
-    color: '#000',
+    color: '#814828',
+  },
+  signupButtonPressed: {
+    backgroundColor: '#F5E6CC', 
   },
 });

@@ -53,9 +53,9 @@ function RootLayoutNav() {
   return (
     <Provider store={store}>
       <Stack>
-        <Stack.Screen name="welcome" options={{ title: 'MilkDelights' }} />
-        <Stack.Screen name="login" options={{ title: 'Login' }} />
-        <Stack.Screen name="signup" options={{ title: 'Sign Up' }} />
+        <Stack.Screen name="welcome" options={{ headerShown: false }} />
+        <Stack.Screen name="login" options={{ headerShown: false }} />
+        <Stack.Screen name="signup" options={{ headerShown: false}} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="product/[id]" options={{ title: 'Product Details' }} />
         <Stack.Screen name="productView" options={{ title: 'All Products' }} />
