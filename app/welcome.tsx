@@ -1,20 +1,19 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Image , Pressable} from 'react-native';
+import { StyleSheet, View, Text, Image, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Hidden } from '@mui/material';
 
 export default function Welcome({ navigation }: { navigation: any }) {
   const router = useRouter();
   return (
     <View style={styles.container}>
       <Image 
-      source={require('../assets/images/logo.png')} // Replace with your image path
-      style={styles.logo}
-      resizeMode="contain"
-    />
+        source={require('../assets/images/logo.png')} // Make sure the path is correct
+        style={styles.logo}
+        resizeMode="contain"
+      />
       <Text style={styles.title}>Welcome to MilkDelights</Text>
       <Text style={styles.subtitle}>
-        Shop & get updates on new products, promotions, and sales with our mobile app.
+        Fresh dairy products delivered to your door. Stay updated with new products, offers, and more!
       </Text>
       <Pressable 
         style={({ pressed }) => [
@@ -46,53 +45,53 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#FFF5E1',
+    backgroundColor: '#F0F8FF', // Soft Milk Blue
     padding: 20,
   },
   logo: {
-    width: 200,  // Adjust as needed
-    height: 200, // Adjust as needed
+    width: 200,
+    height: 200,
     marginBottom: 20,
     borderRadius: 100,
     overflow: 'hidden',
   },
   title: {
-    fontSize: 22,
+    fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 10,
-    color: '#6A3A1F'
+    marginBottom: 8,
+    color: '#1E3A5F', // Darker Blue
   },
   subtitle: {
     fontSize: 16,
     textAlign: 'center',
-    color: '#a25b36',
+    color: '#4979C0', // Softer blue for readability
     marginBottom: 30,
   },
   button: {
     width: '100%',
-    backgroundColor: '#814828',
+    backgroundColor: '#1E90FF', // Fresh Blue for buttons
     padding: 15,
     borderRadius: 8,
     alignItems: 'center',
     marginBottom: 10,
   },
   buttonText: {
-    color: '#fff',
+    color: '#ffffff',
     fontSize: 16,
     fontWeight: 'bold',
   },
   buttonPressed: {
-    backgroundColor: '#6A3A1F', // Darker shade when pressed
+    backgroundColor: '#0073E6', // Slightly darker on press
   },
   signupButton: {
-    backgroundColor: '#FFF5E1',
+    backgroundColor: '#ffffff', // Clean white button for sign up
     borderWidth: 1,
-    borderColor: '#814828',
+    borderColor: '#1E90FF', 
   },
   signupButtonText: {
-    color: '#814828',
+    color: '#1E90FF',
   },
   signupButtonPressed: {
-    backgroundColor: '#F5E6CC', 
+    backgroundColor: '#E6F1FF', // Very light blue when pressed
   },
 });

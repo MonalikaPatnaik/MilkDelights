@@ -1,56 +1,65 @@
-// ProductCard.js
-
 import React from "react";
 import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { Link } from 'expo-router';
+import { useRouter } from "expo-router";
 
 const ProductCard = ({ product }) => {
-  // Access product properties and render the card details
+  const router = useRouter();
+
+  const handlePress = () => {
+    router.push(`/product/${product.id}`);
+  };
+
   return (
-    <Link href={`/product/${product.id}`} style={styles.container}>
-      <View style={styles.card}>
-        <Image source={{ uri: product.url }} style={styles.image} />
-        <View style={styles.textContainer}>
-          <Text style={styles.title}>{product.title.shortTitle}</Text>
-          <Text style={styles.discount}>{product.discount}</Text>
-          <Text style={styles.tagline}>{product.tagline}</Text>
-        </View>
+    <TouchableOpacity style={styles.card} onPress={handlePress}>
+      <Image source={{ uri: product.url }} style={styles.image} />
+      <View style={styles.textContainer}>
+        <Text style={styles.title} numberOfLines={2}>{product.title.shortTitle}</Text>
+        <Text style={styles.discount}>{product.discount}</Text>
+        <Text style={styles.tagline} numberOfLines={1}>{product.tagline}</Text>
       </View>
-    </Link>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 1,
-    marginTop: 10,
-    width: 250,
-    border: "ridge",
-  },
   card: {
-    backgroundColor: "#ffffff",
-    padding: 20,
-    textAlign: "center",
-    width: "100%",
+    width: '48%', // Makes 2 products fit in a row
+    backgroundColor: '#ffffff',
+    borderRadius: 12,
+    overflow: 'hidden',
+    padding: 12,
+    marginBottom: 12,
+    shadowColor: '#1E3A5F',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
   image: {
-    height: 200,
-    objectFit: "contain",
-    borderRadius: 20,
+    width: '100%',
+    height: 120,
+    resizeMode: 'contain',
+    borderRadius: 8,
+    backgroundColor: '#FFF', // Light background for image
   },
   textContainer: {
-    textAlign: "left",
+    marginTop: 8,
   },
   title: {
+    fontSize: 14,
     fontWeight: "600",
-    color: "#212121",
+    color: "#1E3A5F",
   },
   discount: {
     color: "green",
+    fontSize: 12,
+    marginTop: 4,
   },
   tagline: {
+    fontSize: 12,
     color: "#A1824A",
-    opacity: 0.6,
+    opacity: 0.7,
+    marginTop: 2,
   },
 });
 

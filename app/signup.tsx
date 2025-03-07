@@ -10,7 +10,7 @@ export default function Signup() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
-  
+
   const handleSignup = async () => {
     if (!email || !password) {
       Alert.alert("Error", "Please enter email and password");
@@ -26,21 +26,22 @@ export default function Signup() {
       Alert.alert("Error", error.message);
     }
   };
-  return ( 
+
+  return (
     <View style={styles.container}>
       <Text style={styles.title}>Create an Account</Text>
 
       <TextInput
         style={styles.input}
         placeholder="Full Name"
-        placeholderTextColor="#814828"
+        placeholderTextColor="#4979C0"
         value={name}
         onChangeText={setName}
       />
       <TextInput
         style={styles.input}
         placeholder="Email Address"
-        placeholderTextColor="#814828"
+        placeholderTextColor="#4979C0"
         keyboardType="email-address"
         value={email}
         onChangeText={setEmail}
@@ -48,7 +49,7 @@ export default function Signup() {
       <TextInput
         style={styles.input}
         placeholder="Phone Number"
-        placeholderTextColor="#814828"
+        placeholderTextColor="#4979C0"
         keyboardType="phone-pad"
         value={phone}
         onChangeText={setPhone}
@@ -56,18 +57,18 @@ export default function Signup() {
       <TextInput
         style={styles.input}
         placeholder="Password"
-        placeholderTextColor="#814828"
+        placeholderTextColor="#4979C0"
         secureTextEntry
         value={password}
         onChangeText={setPassword}
       />
 
       {/* Sign Up Button */}
-      <Pressable 
+      <Pressable
         style={({ pressed }) => [
-          styles.button, 
+          styles.button,
           pressed && styles.buttonPressed
-        ]} 
+        ]}
         onPress={handleSignup}
       >
         <Text style={styles.buttonText}>Sign Up</Text>
@@ -86,50 +87,50 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#FFF5E1",
+    backgroundColor: "#F0F8FF", // Light milky blue
     padding: 20,
   },
   title: {
     fontSize: 26,
     fontWeight: "bold",
-    color: "#6A3A1F",
+    color: "#1E3A5F", // Deep blue for contrast
     marginBottom: 20,
   },
   input: {
     width: "100%",
-    backgroundColor: "#F5E6CC",
+    backgroundColor: "#FFFFFF", // White input for clean look
     borderWidth: 1,
-    borderColor: "#814828",
+    borderColor: "#1E90FF", // Blue border
     padding: 12,
     borderRadius: 8,
     fontSize: 16,
-    color: "#814828",
+    color: "#1E3A5F", 
     marginBottom: 12,
   },
   button: {
     width: "100%",
-    backgroundColor: "#814828",
+    backgroundColor: "#1E90FF", 
     padding: 15,
     borderRadius: 8,
     alignItems: "center",
     marginTop: 10,
   },
   buttonText: {
-    color: "#FFF5E1",
+    color: "#FFFFFF",
     fontSize: 18,
     fontWeight: "bold",
   },
   buttonPressed: {
-    backgroundColor: "#6A3A1F",
+    backgroundColor: "#0073E6", 
   },
   link: {
     marginTop: 20,
     fontSize: 16,
-    color: "#814828",
+    color: "#1E3A5F",
   },
   linkText: {
     fontWeight: "bold",
     textDecorationLine: "underline",
+    color: "#1E90FF",
   },
 });
-

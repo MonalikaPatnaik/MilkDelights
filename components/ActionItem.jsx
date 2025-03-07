@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/actions/cartActions";
 import { getProductDetails } from "../redux/actions/productAction";
 import { auth } from "../firebase";
-import { Icon } from "react-native-elements"; // Assuming you want to use icons
+import { Icon } from "react-native-elements";
 
 const ActionItem = ({ product }) => {
   const navigate = useNavigation();
@@ -18,7 +18,7 @@ const ActionItem = ({ product }) => {
     if (auth.currentUser) {
       navigate.navigate("Cart");
     } else {
-      navigate.navigate("Signin");
+      navigate.navigate("Cart");
     }
   };
 
@@ -33,21 +33,27 @@ const ActionItem = ({ product }) => {
 
   return (
     <View style={styles.container}>
+      {/* Product Image */}
       <Image source={{ uri: product.detailUrl }} style={styles.image} />
-      <TouchableOpacity
-        onPress={addItemToCart}
-        style={[styles.button, { backgroundColor: "#ff9f00" }]}
-      >
-        <Icon name="shopping-cart" type="font-awesome" color="white" />
-        <Text style={styles.buttonText}>Add to Cart</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={buyNow}
-        style={[styles.button, { backgroundColor: "#fb541b" }]}
-      >
-        <Icon name="flash-on" type="font-awesome" color="white" />
-        <Text style={styles.buttonText}>Buy Now</Text>
-      </TouchableOpacity>
+
+      {/* Action Buttons */}
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          onPress={addItemToCart}
+          style={[styles.button, styles.addToCartButton]}
+        >
+          <Icon name="shopping-cart" type="font-awesome" color="#ffffff" size={18} />
+          <Text style={styles.buttonText}>Add to Cart</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={buyNow}
+          style={[styles.button, styles.buyNowButton]}
+        >
+          <Icon name="bolt" type="font-awesome" color="#ffffff" size={18} />
+          <Text style={styles.buttonText}>Buy Now</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -56,25 +62,50 @@ const styles = StyleSheet.create({
   container: {
     padding: 15,
     alignItems: 'center',
+    backgroundColor: '#ffffff',
+    borderRadius: 12,
+    shadowColor: '#1E3A5F',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+    marginBottom: 16,
   },
   image: {
-    width: '95%',
-    borderWidth: 1,
-    borderColor: '#f0f0f0',
-    padding: 15,
+    width: '100%',
+    height: 250,
+    resizeMode: 'contain',
+    marginBottom: 15,
+    borderRadius: 8,
+    backgroundColor: '#FFF', // soft blue background for product image
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
   },
   button: {
-    width: '45%',
-    height: 50,
-    borderRadius: 2,
-    justifyContent: 'center',
+    flexDirection: 'row',
     alignItems: 'center',
-    marginVertical: 10,
+    justifyContent: 'center',
+    flex: 1,
+    paddingVertical: 12,
+    borderRadius: 8,
+    marginHorizontal: 5,
+  },
+  addToCartButton: {
+    backgroundColor: '#1E90FF', // Themed blue
+  },
+  buyNowButton: {
+    backgroundColor: '#0073E6', // Slightly darker blue for contrast
   },
   buttonText: {
-    color: 'white',
-    marginLeft: 5,
+    color: '#ffffff',
+    fontWeight: 'bold',
+    fontSize: 14,
+    marginLeft: 6,
   },
 });
 
 export default ActionItem;
+ 
