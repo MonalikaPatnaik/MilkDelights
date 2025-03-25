@@ -70,23 +70,6 @@ const handleProductClick = (productId: string) => {
     <FlatList
       ListHeaderComponent={
         <>
-          {/* Header Section */}
-          <View style={styles.header}>
-            <TouchableOpacity style={styles.userIcon}>
-              <Image
-                source={{ uri: "https://your-avatar-url.com" }}
-                style={styles.avatar}
-              />
-            </TouchableOpacity>
-            <View style={styles.locationContainer}>
-              <Ionicons name="location-outline" size={18} color="#1E90FF" />
-              <Text style={styles.locationText}>Delhi, India</Text>
-            </View>
-            <TouchableOpacity>
-              <Ionicons name="ellipsis-vertical" size={24} color="#1E3A5F" />
-            </TouchableOpacity>
-          </View>
-
           {/* Banner Section */}
           <View style={styles.bannerWrapper}>
             <Banner />

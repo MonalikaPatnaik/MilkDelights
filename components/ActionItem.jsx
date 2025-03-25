@@ -16,9 +16,9 @@ const ActionItem = ({ product }) => {
   const addItemToCart = () => {
     dispatch(addToCart(id, quantity));
     if (auth.currentUser) {
-      navigate.navigate("Cart");
+      navigate.navigate("cart");
     } else {
-      navigate.navigate("Cart");
+      navigate.navigate("cart");
     }
   };
 
