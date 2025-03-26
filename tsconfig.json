@@ -24,7 +24,7 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-, "app/(tabs)/index.jsx"  ],
+, "app/screens/Home.jsx"  ],
   "exclude": [
     "node_modules"
   ],

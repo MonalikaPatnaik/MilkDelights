@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../redux/actions/userAction';  // Assume you have this action
-import Loader from '../../constants/Loader'; // Optional loader component
+import { login } from '../../redux/actions/userAction';  
+import Loader from '../../constants/Loader'; 
+import { router } from 'expo-router';
 
 const styles = StyleSheet.create({
   container: {
@@ -47,7 +48,7 @@ const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-  const { loading, error } = useSelector((state: any) => state.user);  // Adjust based on your state structure
+  const { loading, error, isAuthenticated } = useSelector((state: any) => state.user);  
 
   const handleLogin = () => {
     if (email && password) {
@@ -56,6 +57,12 @@ const LoginScreen = () => {
       alert('Please enter both email and password');
     }
   };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.replace('/home');
+    }
+  }, [isAuthenticated]);
 
   if (loading) {
     return <Loader />;

@@ -7,7 +7,7 @@ export default function Welcome({ navigation }: { navigation: any }) {
   return (
     <View style={styles.container}>
       <Image 
-        source={require('../assets/images/logo.png')} // Make sure the path is correct
+        source={require('../../assets/images/logo.png')} // Make sure the path is correct
         style={styles.logo}
         resizeMode="contain"
       />
