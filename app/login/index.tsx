@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, Pressable, Alert } from "react-native";
 import { useRouter } from "expo-router";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth } from "../../firebase";
 
 export default function Login() {
   const router = useRouter();
@@ -24,7 +24,7 @@ export default function Login() {
       }
 
       Alert.alert("Success", "Logged in successfully!");
-      router.push("/(tabs)");
+      router.push("/home");
     } catch (error: any) {
       Alert.alert("Error", error.message);
     }

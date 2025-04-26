@@ -19,8 +19,3 @@ export const store = configureStore({
 // ✅ TypeScript Support
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-
-// const middleware = [thunk];
-// export const store = configureStore({
-//   reducer: reducer
-// });

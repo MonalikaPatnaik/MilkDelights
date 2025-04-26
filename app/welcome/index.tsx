@@ -1,4 +1,3 @@
-// app/welcome/index.tsx
 import React from 'react';
 import { StyleSheet, View, Text, Image, Pressable, ActivityIndicator } from 'react-native';
 import { useRouter } from 'expo-router';
@@ -17,7 +16,6 @@ export default function Welcome() {
   };
 
   if (isLoading) {
-    // 👀 Show loading spinner if app is checking auth
     return (
       <View style={styles.loadingContainer}>
         <ActivityIndicator size="large" color="#1E90FF" />

@@ -1,11 +1,14 @@
-import { Stack } from 'expo-router';
+import { Slot } from 'expo-router';
+import { Provider } from 'react-redux';
+import { store } from '../redux/store';
+import { AuthProvider } from '../context/AuthContext';
 
-export default function Layout() {
+export default function RootLayout() {
   return (
-    <Stack
-      screenOptions={{
-        headerShown: false,
-      }}
-    />
+    <Provider store={store}>
+      <AuthProvider>
+        <Slot />
+      </AuthProvider>
+    </Provider>
   );
 }
