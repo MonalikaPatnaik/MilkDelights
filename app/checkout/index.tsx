@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, ScrollView, Button, Alert } from 'react-native';
-import { useRoute } from '@react-navigation/native';
+import { useRoute } from '@react-navigation/native';  // Using react-navigation hook to get params
 
 export default function Checkout() {
-  const route = useRoute();
-  const { cartItems } = route.params || {};
+  const route = useRoute();  
+  const { cartItems } = route.params || {};  
 
   const [userDetails, setUserDetails] = useState({
     fullName: '',
