@@ -15,11 +15,11 @@ const ActionItem = ({ product }) => {
 
   const addItemToCart = () => {
     dispatch(addToCart(id, quantity));
-    if (auth.currentUser) {
-      navigate.navigate("cart");
-    } else {
-      navigate.navigate("cart");
-    }
+    // if (auth.currentUser) {
+    //   navigate.navigate("cart");
+    // } else {
+    //   navigate.navigate("cart");
+    // }
   };
 
   const buyNow = () => {
