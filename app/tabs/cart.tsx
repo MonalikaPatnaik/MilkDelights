@@ -5,13 +5,15 @@ import { RootState } from "../../redux/store";
 import CartItem from "../../components/CartItem";
 import EmptyCart from "../../components/EmptyCart";
 import TotalView from "../../components/TotalView";
+import { useNavigation } from "@react-navigation/native";
 
 export default function CartTabScreen() {
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
+  const navigation = useNavigation()
 
   const handlePlaceOrder = () => {
     console.log("Proceed to checkout with:", cartItems);
-    // Implement navigation logic here
+    navigation.navigate('Checkout', { cartItems }); 
   };
 
   return (
