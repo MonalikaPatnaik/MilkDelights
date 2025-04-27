@@ -15,12 +15,12 @@ import { Ionicons } from "@expo/vector-icons";
 import Banner from "../../components/Banner";
 import { Link } from "expo-router";
 import { useRouter } from "expo-router";
-import { useAuth } from "../../context/AuthContext"; 
-import { RootState } from "../../redux/store";  // Make sure you import your RootState type
+import { useAuth } from "../../context/AuthContext";
+import { RootState } from "../../redux/store"; // Make sure you import your RootState type
 
 const Home = () => {
   const router = useRouter();
-  const { user } = useAuth(); 
+  const { user } = useAuth();
   const dispatch = useDispatch();
 
   const { loading, products } = useSelector(
@@ -29,7 +29,7 @@ const Home = () => {
 
   useEffect(() => {
     if (!user) {
-      router.replace("/login"); 
+      router.replace("/login");
     }
   }, [user, router]);
 
@@ -60,7 +60,9 @@ const Home = () => {
         {item.title?.shortTitle}
       </Text>
       <View style={styles.productFooter}>
-        <Text style={styles.productPrice}>₹{item.price?.mrp || item.price}</Text>
+        <Text style={styles.productPrice}>
+          ₹{item.price?.mrp || item.price}
+        </Text>
         <TouchableOpacity style={styles.addButton}>
           <Text style={styles.addButtonText}>Add</Text>
         </TouchableOpacity>
@@ -78,70 +80,66 @@ const Home = () => {
 
   return (
     <View style={styles.container}>
-    {/* Custom Header */}
-    <View style={styles.header}>
-    <Image
-      source={require("../../assets/images/logo.png")} 
-      style={styles.logo}
-    />
-    <TouchableOpacity onPress={() => router.push('/cart')}>
-      <Ionicons name="cart-outline" size={28} color="#1E3A5F" />
-    </TouchableOpacity>
-  </View>
-    <FlatList
-      ListHeaderComponent={
-        <>
-          <View style={styles.bannerWrapper}>
-            <Banner />
-          </View>
+      <FlatList
+        ListHeaderComponent={
+          <>
+            <View style={styles.bannerWrapper}>
+              <Banner />
+            </View>
 
-          <View style={styles.categoriesContainer}>
-            <Text style={styles.sectionTitle}>Categories</Text>
-            <Link href={"/productView"} style={styles.viewAll}>
-              View All
-            </Link>
-          </View>
-          <Text style={styles.subText}>Milk, Bread, Ghee, Butter, and more</Text>
-        </>
-      }
-      data={products}
-      renderItem={renderProductCard}
-      keyExtractor={(item, index) => item.id ? `${item.id}-${index}` : `item-${index}`}
-      numColumns={2}
-      columnWrapperStyle={styles.row}
-      contentContainerStyle={{ paddingHorizontal: 8, paddingBottom: 80 }}
-      showsVerticalScrollIndicator={false}
-      refreshControl={<RefreshControl refreshing={loading} onRefresh={onRefresh} />}
-      bounces
-      style={styles.background}
-    />
+            <View style={styles.categoriesContainer}>
+              <Text style={styles.sectionTitle}>Categories</Text>
+              <Link href={"/productView"} style={styles.viewAll}>
+                View All
+              </Link>
+            </View>
+            <Text style={styles.subText}>
+              Milk, Bread, Ghee, Butter, and more
+            </Text>
+          </>
+        }
+        data={products}
+        renderItem={renderProductCard}
+        keyExtractor={(item, index) =>
+          item.id ? `${item.id}-${index}` : `item-${index}`
+        }
+        numColumns={2}
+        columnWrapperStyle={styles.row}
+        contentContainerStyle={{ paddingHorizontal: 8, paddingBottom: 80 }}
+        showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl refreshing={loading} onRefresh={onRefresh} />
+        }
+        bounces
+        style={styles.background}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#F0F8FF",
-      },
-      header: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        paddingHorizontal: 16,
-        paddingVertical: 12,
-        backgroundColor: "#FFFFFF",
-        borderBottomWidth: 1,
-        borderBottomColor: "#E0E0E0",
-        elevation: 3, 
-      },
-      logo: {
-        width: 120,
-        height: 40,
-        resizeMode: "contain",
-      },
+  container: {
+    flex: 1,
+    backgroundColor: "#F0F8FF",
+  },
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    backgroundColor: "#FFFFFF",
+    borderBottomWidth: 1,
+    borderBottomColor: "#E0E0E0",
+    elevation: 3,
+  },
+  logo: {
+    width: 120,
+    height: 40,
+    resizeMode: "contain",
+  },
   background: {
-    backgroundColor: "#FAFAFA", 
+    backgroundColor: "#FAFAFA",
   },
   loaderContainer: {
     flex: 1,
