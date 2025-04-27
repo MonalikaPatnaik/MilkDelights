@@ -1,3 +1,3 @@
-import Welcome from './screens/welcome';
+import Welcome from './welcome';
 
 export default Welcome;
