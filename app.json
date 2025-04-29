@@ -21,7 +21,8 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff",
         "package": "com.igdtuw.milkdelights"
-      }
+      },
+      "package": "com.monalika9.myapp"
     },
     "web": {
       "bundler": "metro",
@@ -33,6 +34,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "67079b33-a90e-41cd-b3b2-fd0deb86e8d0"
+      }
     }
   }
 }
