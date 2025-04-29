@@ -5,18 +5,18 @@ import { RootState } from "../../redux/store";
 import CartItem from "../../components/CartItem";
 import EmptyCart from "../../components/EmptyCart";
 import TotalView from "../../components/TotalView";
-import { useNavigation } from "@react-navigation/native";
 import { useRouter } from "expo-router";
 
 export default function CartTabScreen() {
   const router = useRouter();
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
-  const navigation = useNavigation()
 
   const handlePlaceOrder = () => {
     console.log("Proceed to checkout with:", cartItems);
-    navigation.navigate('Checkout', { cartItems }); 
-    router.replace('/checkout');
+    router.push({
+      pathname: '/checkout',
+      params: { cartItems: JSON.stringify(cartItems) }
+    });
   };
 
   return (
@@ -82,4 +82,3 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
   },
 });
-

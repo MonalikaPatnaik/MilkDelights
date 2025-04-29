@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { View, Text, Image, TouchableOpacity, StyleSheet, Alert } from "react-native";
+import { useRouter } from "expo-router";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/actions/cartActions";
 import { getProductDetails } from "../redux/actions/productAction";
@@ -8,26 +8,43 @@ import { auth } from "../firebase";
 import { Icon } from "react-native-elements";
 
 const ActionItem = ({ product }) => {
-  const navigate = useNavigation();
+  const router = useRouter();
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
   const { id } = product;
 
   const addItemToCart = () => {
     dispatch(addToCart(id, quantity));
-    // if (auth.currentUser) {
-    //   navigate.navigate("cart");
-    // } else {
-    //   navigate.navigate("cart");
-    // }
+    Alert.alert(
+      'Success',
+      'Item added to cart successfully!',
+      [
+        {
+          text: 'View Cart',
+          onPress: () => router.push('/tabs/cart'),
+          style: 'default',
+        },
+        {
+          text: 'Continue Shopping',
+          style: 'cancel',
+        },
+      ],
+      { cancelable: true }
+    );
   };
 
   const buyNow = () => {
-    dispatch(getProductDetails(id));
     if (auth.currentUser) {
-      navigate.navigate("Checkout", { state: { product } });
+      const productWithQuantity = {
+        ...product,
+        quantity: 1,
+      };
+      router.push({
+        pathname: '/checkout',
+        params: { cartItems: JSON.stringify([productWithQuantity]) }
+      });
     } else {
-      navigate.navigate("Signin");
+      router.push('/login');
     }
   };
 
@@ -108,4 +125,3 @@ const styles = StyleSheet.create({
 });
 
 export default ActionItem;
- 

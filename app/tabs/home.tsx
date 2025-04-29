@@ -8,9 +8,11 @@ import {
   FlatList,
   ActivityIndicator,
   RefreshControl,
+  Alert,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../redux/actions/productAction";
+import { addToCart } from "../../redux/actions/cartActions";
 import { Ionicons } from "@expo/vector-icons";
 import Banner from "../../components/Banner";
 import { Link } from "expo-router";
@@ -45,6 +47,26 @@ const Home = () => {
     router.push(`/product/${productId}`);
   };
 
+  const handleAddToCart = (item) => {
+    dispatch(addToCart(item.id, 1));
+    Alert.alert(
+      'Success',
+      'Item added to cart successfully!',
+      [
+        {
+          text: 'View Cart',
+          onPress: () => router.push('/tabs/cart'),
+          style: 'default',
+        },
+        {
+          text: 'Continue Shopping',
+          style: 'cancel',
+        },
+      ],
+      { cancelable: true }
+    );
+  };
+
   const renderProductCard = ({ item }) => (
     <TouchableOpacity
       style={styles.productCard}
@@ -63,9 +85,17 @@ const Home = () => {
         <Text style={styles.productPrice}>
           ₹{item.price?.mrp || item.price}
         </Text>
-        <TouchableOpacity style={styles.addButton}>
-          <Text style={styles.addButtonText}>Add</Text>
-        </TouchableOpacity>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity 
+            style={[styles.button, styles.addButton]}
+            onPress={() => handleAddToCart(item)}
+          >
+            <Text style={styles.buttonText}>Add</Text>
+          </TouchableOpacity>
+          {/* <TouchableOpacity style={[styles.button, styles.buyButton]}>
+            <Text style={styles.buttonText}>Buy</Text>
+          </TouchableOpacity> */}
+        </View>
       </View>
     </TouchableOpacity>
   );
@@ -201,26 +231,40 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   productFooter: {
+    flexDirection: "column",
+    alignItems: "center",
+    width: "100%",
+    gap: 8,
+  },
+  productPrice: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#388E3C",
+  },
+  buttonContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     width: "100%",
+    gap: 8,
   },
-  productPrice: {
-    fontSize: 14,
-    fontWeight: "bold",
-    color: "#388E3C",
+  button: {
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 20,
+    flex: 1,
+    alignItems: "center",
   },
   addButton: {
     backgroundColor: "#1E90FF",
-    paddingVertical: 6,
-    paddingHorizontal: 16,
-    borderRadius: 20,
   },
-  addButtonText: {
+  buyButton: {
+    backgroundColor: "#388E3C",
+  },
+  buttonText: {
     color: "#FFF",
     fontWeight: "bold",
-    fontSize: 14,
+    fontSize: 12,
   },
   row: {
     justifyContent: "space-between",
